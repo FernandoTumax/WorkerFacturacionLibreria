@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FacturaGestorLibreriaProduct" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e1fff941-758d-4276-9400-a0365d088937">
+	<property name="ireport.zoom" value="1.2396694214876032"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="_idPedido" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select p.name_product,
+            p.description_product,
+            p.price,
+            p.cantidad
+            from facturacion_product fp
+        inner join product p on fp.product_id = p.id
+        where fp.root_id = $P{_idPedido};]]>
+	</queryString>
+	<field name="name_product" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="description_product" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="price" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cantidad" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="35" uuid="e33c366c-5597-4064-838a-1344dcd1deaa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Bell MT" size="24"/>
+				</textElement>
+				<text><![CDATA[Listado de Productos]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="21" forecolor="#3399FF" backcolor="#3399FF" uuid="f5ca4ece-fb48-41d0-a604-68c4a1c5c3e8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="138" height="21" forecolor="#FFFFFF" backcolor="#000000" uuid="33107388-b353-4acc-a83e-95c40dfab2a9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Bell MT" size="17"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="138" y="0" width="163" height="21" forecolor="#FFFFFF" backcolor="#000000" uuid="451c14a3-e696-431e-b742-b743b7567bb8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Bell MT" size="17"/>
+				</textElement>
+				<text><![CDATA[Descripcion:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="0" width="105" height="21" forecolor="#FFFFFF" backcolor="#000000" uuid="872d3935-e0a3-4d27-bcdf-1b73242908df"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Bell MT" size="17"/>
+				</textElement>
+				<text><![CDATA[Precio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="301" y="0" width="149" height="21" forecolor="#FFFFFF" backcolor="#000000" uuid="9cbcdf34-a3ad-441d-8fb3-063f9a20549d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Bell MT" size="17"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="138" height="20" uuid="9e85ceb2-976d-4dab-8e29-14cbae8658cf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Bell MT" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name_product}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="0" width="163" height="20" uuid="40abc6ac-29c2-4a27-b7cf-5470f3987efe"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Bell MT" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{description_product}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="301" y="0" width="149" height="20" uuid="56da5144-3e1e-47e4-ac72-36d30dbbe1e9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Bell MT" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="450" y="0" width="105" height="20" uuid="b0dd6499-688c-4b21-a4df-372f9ea7be78"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Bell MT" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
